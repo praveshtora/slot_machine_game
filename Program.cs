@@ -38,6 +38,13 @@ for (int i = 0; i < 5; i++)
 // Display stop positions
 Console.WriteLine("Stop Positions: " + string.Join(", ", stopPositions));
 
+//  screen = new string[3, 5]
+// {
+//     { "sym3", "sym3", "sym3", "sym1", "sym1" },
+//     { "sym3", "sym3", "sym3", "sym2", "sym2" },
+//     { "sym3", "sym3", "sym3", "sym5", "sym5" }
+// };
+
 // Display screen
 Console.WriteLine("Screen:");
 for (int i = 0; i < 3; i++)
@@ -52,19 +59,19 @@ for (int i = 0; i < 3; i++)
 int totalWins = 0;
 List<List<string>> winDetails = [];
 
-for(int j = 0; j < 5; j++)
-{
-   for (int i = 0; i < 3; i++)
+// left most column
+int leftColumn = 0;
+for (int i = 0; i < 3; i++)
    {
-    string symbol = screen[i, j];
+    string symbol = screen[i, leftColumn];
     bool isPresentInNextReel = true;
     int count = 1;
-    int k = j +1;
+    int k = leftColumn + 1;
     List<int> positions = [];
-    positions.Add(j + (i * 5));
+    positions.Add(leftColumn + (i * 5));
     while (isPresentInNextReel) {
         isPresentInNextReel = false;
-        if (j == 4 || k == 5) {
+        if (k == 5) {
             break;
         }
         for (int l = 0; l < 3; l++)
@@ -100,7 +107,6 @@ for(int j = 0; j < 5; j++)
         }
     }
    }
-}
 
 // Display winnings
 Console.WriteLine("Total wins: " + totalWins);
